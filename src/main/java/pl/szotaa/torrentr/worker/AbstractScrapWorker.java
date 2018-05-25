@@ -29,7 +29,7 @@ public abstract class AbstractScrapWorker implements Callable<Set<Result>> {
      * @return Set of query search results.
      */
 
-    protected abstract Set<Result> scrap();
+    protected abstract Set<Result> scrap() throws Exception;
 
     /**
      * Provides concurrent execution.
