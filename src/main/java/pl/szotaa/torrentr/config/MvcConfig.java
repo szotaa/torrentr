@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * This class overrides default Spring MVC configuration.
+ * Spring's MVC configuration.
  *
  * @author Jakub Szota
  */

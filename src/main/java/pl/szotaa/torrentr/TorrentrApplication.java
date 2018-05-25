@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Torrent meta-search web application
+ * Torrent meta-search web application.
  *
  * @author Jakub Szota
  *
@@ -12,6 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TorrentrApplication {
+
+	/**
+	 * Application's starting method.
+	 */
 
 	public static void main(String[] args) {
 		SpringApplication.run(TorrentrApplication.class, args);
