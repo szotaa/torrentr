@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<main layout:fragment="main">
+    <table>
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Source</td>
+                <td>Seeds</td>
+                <td>Peers</td>
+                <td>Size</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="result : ${results}">
+                <td><a th:href="${result.getMagnetLink()}" th:text="${result.getTitle()}"></a></td>
+                <td><a th:text="${result.getSource()}" th:href="${result.getInfoLink()}"></a></td>
+                <td th:text="${result.getSeeds()}"></td>
+                <td th:text="${result.getPeers()}"></td>
+                <td th:text="${result.getSize()}"></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

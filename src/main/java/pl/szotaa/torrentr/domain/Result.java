@@ -50,6 +50,12 @@ public class Result implements Comparable<Result> {
     private final double size;
 
     /**
+     * Search engine which found this result.
+     */
+
+    private final String source;
+
+    /**
      * Compares two Result objects. If objectA has more seeds then objectB, objectA is considered greater than objectB.
      * @param o Object you compare to.
      * @return 0 when equal, >0 if object on which compareTo was invoked is greater <0 otherwise.

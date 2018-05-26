@@ -19,12 +19,9 @@ import java.util.StringJoiner;
 
 public class ThePirateBayScrapWorker extends AbstractScrapWorker {
 
-    /**
-     * Search engine URL.
-     */
-
     //TODO:  TPBSW unit tests
 
+    private static final String WEBSITE_URL = "https://thepiratebay.org/";
     private static final String ENGINE_URL = "https://thepiratebay.org/search/";
 
     ThePirateBayScrapWorker(String searchQuery) {
@@ -55,6 +52,7 @@ public class ThePirateBayScrapWorker extends AbstractScrapWorker {
                     .seeds(scrapSeeds(element))
                     .peers(scrapPeers(element))
                     .size(scrapSize(element))
+                    .source(WEBSITE_URL)
                     .build();
 
             results.add(result);
@@ -71,7 +69,7 @@ public class ThePirateBayScrapWorker extends AbstractScrapWorker {
     }
 
     private String scrapInfoLink(Element element){
-        return element.select(".detLink").attr("href");
+        return WEBSITE_URL + element.select(".detLink").attr("href");
     }
 
     private int scrapSeeds(Element element){

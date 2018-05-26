@@ -5,6 +5,7 @@ import pl.szotaa.torrentr.domain.Result;
 import pl.szotaa.torrentr.worker.AbstractScrapWorker;
 import pl.szotaa.torrentr.worker.ScrapWorkerSetFactory;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,10 +33,10 @@ public class SearchService {
      * Search all supported search engines, scraps results and combines them into set.
      *
      * @param query Search query.
-     * @return Set of results from different search engines.
+     * @return Sorted (by seeds) list of results from different search engines.
      */
 
-    public Set<Result> search(String query){ //TODO: cleanup
+    public List<Result> search(String query){ //TODO: cleanup
         Set<AbstractScrapWorker> scrapWorkers = ScrapWorkerSetFactory.getSetOfScrapWorkers(query);
         List<Future<Set<Result>>> listOfSets = null;
         Set<Result> results = Collections.synchronizedSet(new HashSet<>());
@@ -53,6 +54,12 @@ public class SearchService {
         catch (Exception e){
 
         }
+        return resultSetToSortedList(results);
+    }
+
+    private List<Result> resultSetToSortedList(Set<Result> set){
+        List<Result> results = new ArrayList<>(set);
+        results.sort(Collections.reverseOrder());
         return results;
     }
 }
