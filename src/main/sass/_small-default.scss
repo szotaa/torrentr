@@ -1,3 +1,120 @@
 html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
 
 * {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+
+/********** BODY **********/
+
+body {
+  background-color: $backgroundColor;
+  font-size: 1rem;
+  font-family: $defaultFont;
+  font-weight: 300;
+}
+
+/********** HEADER *********/
+
+header {
+  padding: 3px;
+  color: $secondaryColor;
+  background-color: $primaryColor;
+
+  h1 {
+    font-size: 200%;
+    font-weight: bold;
+    a {
+      color: lighten($secondaryColor, 10%);
+      text-decoration: none;
+    }
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 125%;
+  }
+}
+
+/********** NAV *********/
+
+nav {
+  padding: 3px;
+  color: $primaryColor;
+  background-color: $secondaryColor;
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    li {
+      width: 100%;
+      text-align: center;
+      vertical-align: middle;
+
+      a{
+        text-decoration: none;
+        color: darken($primaryColor, 10%);
+      }
+    }
+  }
+}
+
+/********** MAIN *********/
+
+main {
+  .searchBox {
+    padding-top: 15%;
+    margin: 0 auto;
+    max-width: 700px;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+
+    .searchTitle {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+      color: $otherColor;
+      font-size: 125%;
+    }
+
+    .searchBar {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 3;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .searchButton {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 3;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/********** FOOTER *********/
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: darken($primaryColor, 10%);
+  background-color: $secondaryColor;
+
+  .container {
+    padding: 3px;
+  }
+}
