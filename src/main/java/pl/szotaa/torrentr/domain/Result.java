@@ -11,7 +11,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class Result {
+public class Result implements Comparable<Result> {
 
     /**
      * Torrent's title.
@@ -48,4 +48,45 @@ public class Result {
      */
 
     private final double size;
+
+    /**
+     * Compares two Result objects. If objectA has more seeds then objectB, objectA is considered greater than objectB.
+     * @param o Object you compare to.
+     * @return 0 when equal, >0 if object on which compareTo was invoked is greater <0 otherwise.
+     */
+
+    @Override
+    public int compareTo(Result o) {
+        return Integer.compare(this.seeds, o.getSeeds());
+    }
+
+    /**
+     * Tests Result with other object for equality. Object with equal case-insensitive magnetLinks are considered equal.
+     * @param obj Object tested for equality.
+     * @return True if objects are equal, false otherwise.
+     */
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this){
+            return true;
+        }
+        if(!(obj instanceof Result)){
+            return false;
+        }
+        Result result = (Result) obj;
+        return this.magnetLink.equalsIgnoreCase(result.magnetLink);
+    }
+
+    /**
+     * HashCode is generated based on magnetLink's hashcode.
+     * @return Hash code of a class instance.
+     */
+
+    @Override
+    public int hashCode() {
+        int result = this.magnetLink.toLowerCase().hashCode();
+        result = 31 * result;
+        return result;
+    }
 }
