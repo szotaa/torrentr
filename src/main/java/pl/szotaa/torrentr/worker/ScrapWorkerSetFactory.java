@@ -20,6 +20,7 @@ public class ScrapWorkerSetFactory {
         //temporary implementation
         Set<AbstractScrapWorker> scrapWorkers = new HashSet<>();
         scrapWorkers.add(new ThePirateBayScrapWorker(searchQuery, new JsoupWebClient()));
+        scrapWorkers.add(new One337xScrapWorker(searchQuery, new JsoupWebClient()));
         return scrapWorkers;
     }
 }
