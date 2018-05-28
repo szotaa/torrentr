@@ -2,7 +2,11 @@ package pl.szotaa;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import pl.szotaa.torrentr.config.MvcConfigTest;
+import pl.szotaa.torrentr.controller.SearchControllerTest;
 import pl.szotaa.torrentr.domain.ResultTest;
+import pl.szotaa.torrentr.worker.ScrapWorkerSetFactoryTest;
+import pl.szotaa.torrentr.worker.ThePirateBayScrapWorkerTest;
 
 /**
  * Running this suite executes all tests. Every new test should be listed here in @Suite.SuiteClasses annotation.
@@ -12,7 +16,11 @@ import pl.szotaa.torrentr.domain.ResultTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ResultTest.class
+        ResultTest.class,
+        ScrapWorkerSetFactoryTest.class,
+        ThePirateBayScrapWorkerTest.class,
+        MvcConfigTest.class,
+        SearchControllerTest.class
 })
 public class AllTestsSuite {
 }

@@ -2,6 +2,7 @@ package pl.szotaa.torrentr.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Immutable class representing single search result.
@@ -11,6 +12,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
+@ToString
 public class Result implements Comparable<Result> {
 
     /**

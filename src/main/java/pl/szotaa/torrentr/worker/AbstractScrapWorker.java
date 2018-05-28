@@ -3,6 +3,7 @@ package pl.szotaa.torrentr.worker;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import pl.szotaa.torrentr.domain.Result;
+import pl.szotaa.torrentr.worker.webclient.WebClient;
 
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -22,6 +23,12 @@ public abstract class AbstractScrapWorker implements Callable<Set<Result>> {
      */
 
     protected final String searchQuery;
+
+    /**
+     * Web client for internet connections.
+     */
+
+    protected final WebClient webClient;
 
     /**
      * Scraps the website for search engine's query search results. Protected access level to prevent direct execution.

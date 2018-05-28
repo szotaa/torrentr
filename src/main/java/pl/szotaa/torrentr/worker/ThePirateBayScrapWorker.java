@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import pl.szotaa.torrentr.domain.Result;
+import pl.szotaa.torrentr.worker.webclient.WebClient;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,19 +20,17 @@ import java.util.StringJoiner;
 
 public class ThePirateBayScrapWorker extends AbstractScrapWorker {
 
-    //TODO:  TPBSW unit tests
-
     private static final String WEBSITE_URL = "https://thepiratebay.org/";
     private static final String ENGINE_URL = "https://thepiratebay.org/search/";
 
-    ThePirateBayScrapWorker(String searchQuery) {
-        super(searchQuery);
+    ThePirateBayScrapWorker(String searchQuery, WebClient webClient) {
+        super(searchQuery, webClient);
     }
 
     @Override
     protected Set<Result> scrap() throws Exception {
         String scrapUrl = buildSearchUrl(super.searchQuery);
-        Document searchEngineResponse = Jsoup.connect(scrapUrl).get();
+        Document searchEngineResponse = super.webClient.connect(scrapUrl).get();
         Elements resultElements = searchEngineResponse.select("table > tbody > tr").not(".header");
         return buildResultSet(resultElements);
     }
@@ -76,11 +75,11 @@ public class ThePirateBayScrapWorker extends AbstractScrapWorker {
         return Integer.parseInt(element.getElementsByTag("td").get(2).text());
     }
 
-    private static int scrapPeers(Element element){
+    private int scrapPeers(Element element){
         return Integer.parseInt(element.getElementsByTag("td").get(3).text());
     }
 
-    private static double scrapSize(Element element){
+    private double scrapSize(Element element){
         String description = element.select("font").text();
         return 0; //TODO: size scraping with respect to MiB and GiB..
     }
