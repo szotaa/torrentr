@@ -17,7 +17,8 @@ public class ScrapWorkerSetFactoryTest {
         Set<AbstractScrapWorker> set = ScrapWorkerSetFactory.getSetOfScrapWorkers("example");
         assertTrue(containsSpecifiedSubclassOfAbstractScrapWorker(set, ThePirateBayScrapWorker.class));
         assertTrue(containsSpecifiedSubclassOfAbstractScrapWorker(set, One337xScrapWorker.class));
-        assertEquals(2, set.size());
+        assertTrue(containsSpecifiedSubclassOfAbstractScrapWorker(set, TorLockScrapWorker.class));
+        assertEquals(3, set.size());
     }
 
     private <T extends AbstractScrapWorker> boolean containsSpecifiedSubclassOfAbstractScrapWorker(Set<AbstractScrapWorker> set, Class<T> type){
