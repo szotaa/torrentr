@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import pl.szotaa.torrentr.domain.Result;
+import pl.szotaa.torrentr.worker.util.FileSizeConverter;
 import pl.szotaa.torrentr.worker.webclient.WebClient;
 
 import java.util.Arrays;
@@ -74,6 +75,9 @@ public class TorLockScrapWorker extends AbstractScrapWorker {
     }
 
     private double scrapSize(Element element){
-        return 0; //TODO size scraping
+        String stringSize = element.select(".ts").get(0).ownText();
+        Double size = Double.parseDouble(stringSize.replaceAll("[^\\d.]", ""));
+        String unit = stringSize.replaceAll("[\\d.\\s]", "");
+        return FileSizeConverter.toKb(size, unit);
     }
 }

@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import pl.szotaa.torrentr.domain.Result;
+import pl.szotaa.torrentr.worker.util.FileSizeConverter;
 import pl.szotaa.torrentr.worker.webclient.WebClient;
 
 import java.util.Arrays;
@@ -25,7 +26,6 @@ public class One337xScrapWorker extends AbstractScrapWorker {
         String scrapUrl = buildSearchUrl(super.searchQuery);
         Document searchEngineResponse = super.webClient.connect(scrapUrl).get();
         Elements resultElements = searchEngineResponse.select("table > tbody > tr");
-        System.out.println("elmetns size:" + resultElements.size());
         return buildResultSet(resultElements);
     }
 
@@ -38,7 +38,6 @@ public class One337xScrapWorker extends AbstractScrapWorker {
     private Set<Result> buildResultSet(Elements resultElements) throws Exception {
         Set<Result> results = new HashSet<>();
         for(Element element : resultElements){
-            System.out.println("-");
             Result result = Result.builder()
                     .title(scrapTitle(element))
                     .magnetLink(scrapMagnetLink(element))
@@ -76,6 +75,9 @@ public class One337xScrapWorker extends AbstractScrapWorker {
     }
 
     private double scrapSize(Element element){
-        return 0; //TODO size scraping
+        String stringSize = element.getElementsByTag("td").get(4).ownText();
+        Double size = Double.parseDouble(stringSize.replaceAll("[^\\d.]", ""));
+        String unit = stringSize.replaceAll("[\\d.\\s]", "");
+        return FileSizeConverter.toKb(size, unit);
     }
 }

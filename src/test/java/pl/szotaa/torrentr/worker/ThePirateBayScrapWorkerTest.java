@@ -39,6 +39,7 @@ public class ThePirateBayScrapWorkerTest {
             "                    <a href=\"wrongMagnetLink\">wrongMagnetLink</a>\n" +
             "                    <a href=\"wrongMagnetLink\">wrongMagnetLink</a>\n" +
             "                    <a href=\"magnetLink\">correctMagnetLink</a>\n" +
+            "                    <font>Uploaded 01-01 2001, Size 100.0 MiB, ULed by test\t</font>" +
             "                </td>\n" +
             "                <td>\n" +
             "                    empty\n" +
@@ -77,8 +78,7 @@ public class ThePirateBayScrapWorkerTest {
         assertEquals("https://thepiratebay.org/infoLink", result.getInfoLink());
         assertEquals(100, result.getSeeds());
         assertEquals(100, result.getPeers());
-        assertEquals("https://thepiratebay.org/", result.getSource());
-
-        //todo: add size assertion
+        assertEquals("https://thepiratebay.org", result.getSource());
+        assertEquals(102400, result.getSize(), 0.01);
     }
 }

@@ -1,16 +1,18 @@
 package pl.szotaa.torrentr.worker;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import pl.szotaa.torrentr.domain.Result;
+import pl.szotaa.torrentr.worker.util.FileSizeConverter;
 import pl.szotaa.torrentr.worker.webclient.WebClient;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * ThePirateBay.org search results scraper.
@@ -20,7 +22,7 @@ import java.util.StringJoiner;
 
 public class ThePirateBayScrapWorker extends AbstractScrapWorker {
 
-    private static final String WEBSITE_URL = "https://thepiratebay.org/";
+    private static final String WEBSITE_URL = "https://thepiratebay.org";
     private static final String ENGINE_URL = "https://thepiratebay.org/search/";
 
     ThePirateBayScrapWorker(String searchQuery, WebClient webClient) {
@@ -68,7 +70,7 @@ public class ThePirateBayScrapWorker extends AbstractScrapWorker {
     }
 
     private String scrapInfoLink(Element element){
-        return WEBSITE_URL + element.select(".detLink").attr("href");
+        return WEBSITE_URL + "/" + element.select(".detLink").attr("href");
     }
 
     private int scrapSeeds(Element element){
@@ -81,6 +83,9 @@ public class ThePirateBayScrapWorker extends AbstractScrapWorker {
 
     private double scrapSize(Element element){
         String description = element.select("font").text();
-        return 0; //TODO: size scraping with respect to MiB and GiB..
+        description = description.substring(description.indexOf(",") + 7, description.lastIndexOf(","));
+        Double size = Double.parseDouble(description.replaceAll("[^\\d.]", ""));
+        String unit = description.replaceAll("[\\d.\\s]", "");
+        return FileSizeConverter.toKb(size, unit);
     }
 }

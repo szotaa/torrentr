@@ -24,7 +24,7 @@
                 <td><a th:text="${result.getSource()}" th:href="${result.getInfoLink()}"></a></td>
                 <td th:text="${result.getSeeds()}"></td>
                 <td th:text="${result.getPeers()}"></td>
-                <td th:text="${result.getSize()}"></td>
+                <td th:text="${#numbers.formatDecimal(result.getSize(), 0, 2)}"></td>
             </tr>
         </tbody>
     </table>
