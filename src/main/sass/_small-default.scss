@@ -9,6 +9,10 @@ body {
   font-size: 1rem;
   font-family: $defaultFont;
   font-weight: 300;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 /********** HEADER *********/
@@ -23,7 +27,6 @@ header {
     font-weight: bold;
     a {
       color: lighten($secondaryColor, 10%);
-      text-decoration: none;
     }
   }
 
@@ -103,15 +106,22 @@ main {
     }
   }
 
-  table {
+  .results {
     overflow-x: auto;
+    table {
+      width: 100%;
+
+      tr {
+        margin: 2px;
+      }
+    }
   }
 }
 
 /********** FOOTER *********/
 
 footer {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

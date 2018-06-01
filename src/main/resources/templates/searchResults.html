@@ -8,26 +8,28 @@
 </head>
 <body>
 <main layout:fragment="main">
-    <table>
-        <thead>
+    <div class="results">
+        <table>
+            <thead>
             <tr>
-                <td>Title</td>
-                <td>Source</td>
-                <td>Seeds</td>
-                <td>Peers</td>
-                <td>Size</td>
+                <th>Title</th>
+                <th>Source</th>
+                <th>Seeds</th>
+                <th>Peers</th>
+                <th>Size</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr th:each="result : ${results}">
-                <td><a th:href="${result.getMagnetLink()}" th:text="${result.getTitle()}"></a></td>
-                <td><a th:text="${result.getSource()}" th:href="${result.getInfoLink()}"></a></td>
-                <td th:text="${result.getSeeds()}"></td>
-                <td th:text="${result.getPeers()}"></td>
-                <td th:text="${#numbers.formatDecimal(result.getSize(), 0, 2)}"></td>
+                <td data-title="Title"><a th:href="${result.getMagnetLink()}" th:text="${result.getTitle()}"></a></td>
+                <td data-title="Source"><a th:text="${result.getSource()}" th:href="${result.getInfoLink()}"></a></td>
+                <td data-title="Seeds" th:text="${result.getSeeds()}"></td>
+                <td data-title="Peers" th:text="${result.getPeers()}"></td>
+                <td data-title="Size" th:text="${#numbers.formatDecimal(result.getSize(), 0, 2) + 'kb'}"></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </main>
 </body>
 </html>
