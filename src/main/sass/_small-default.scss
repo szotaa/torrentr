@@ -116,6 +116,12 @@ main {
       }
     }
   }
+
+  .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /********** FOOTER *********/
