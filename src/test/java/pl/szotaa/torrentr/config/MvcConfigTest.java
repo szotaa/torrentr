@@ -47,4 +47,11 @@ public class MvcConfigTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }
+
+    @Test
+    public void requestAbout_aboutGetsServed() throws Exception {
+        mockMvc.perform(get("/about"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("about"));
+    }
 }

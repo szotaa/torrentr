@@ -27,6 +27,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry
                 .addViewController("/error").setViewName("error");
+
+        registry
+                .addViewController("/about").setViewName("about");
     }
 
     /**
