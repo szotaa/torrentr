@@ -13,6 +13,6 @@ public class JsoupWebClient implements WebClient {
 
     @Override
     public Connection connect(String url) {
-        return Jsoup.connect(url);
+        return Jsoup.connect(url).timeout(5000);
     }
 }
