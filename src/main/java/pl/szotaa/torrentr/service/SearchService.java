@@ -1,11 +1,13 @@
 package pl.szotaa.torrentr.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.szotaa.torrentr.domain.Result;
 import pl.szotaa.torrentr.worker.AbstractScrapWorker;
 import pl.szotaa.torrentr.worker.ScrapWorkerSetFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.concurrent.Future;
  * @author Jakub Szota
  */
 
+@Slf4j
 @Service
 public class SearchService {
 
@@ -47,12 +50,14 @@ public class SearchService {
                     results.addAll(x.get());
                 }
                 catch (Exception e){
-
+                    log.error(e.getMessage());
+                    Arrays.stream(e.getSuppressed()).forEach(throwable -> log.error(throwable.getMessage()));
                 }
             });
         }
         catch (Exception e){
-
+            log.error(e.getMessage());
+            Arrays.stream(e.getSuppressed()).forEach(throwable -> log.error(throwable.getMessage()));
         }
         return resultSetToSortedList(results);
     }
