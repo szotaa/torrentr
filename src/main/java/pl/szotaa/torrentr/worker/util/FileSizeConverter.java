@@ -12,6 +12,6 @@ public class FileSizeConverter {
         else if(unit.equalsIgnoreCase("tib") || unit.equalsIgnoreCase("tb")){
             return 1024 * 1024 * 1024 * amount;
         }
-        throw new RuntimeException("Not supported unit!");
+        throw new IllegalArgumentException("Unsupported unit string: " + unit);
     }
 }
