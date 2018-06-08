@@ -7,6 +7,7 @@ import pl.szotaa.torrentr.controller.SearchControllerTest;
 import pl.szotaa.torrentr.domain.ResultTest;
 import pl.szotaa.torrentr.worker.ScrapWorkerSetFactoryTest;
 import pl.szotaa.torrentr.worker.ThePirateBayScrapWorkerTest;
+import pl.szotaa.torrentr.worker.util.FileSizeConverterTest;
 
 /**
  * Running this suite executes all tests. Every new test should be listed here in @Suite.SuiteClasses annotation.
@@ -20,7 +21,8 @@ import pl.szotaa.torrentr.worker.ThePirateBayScrapWorkerTest;
         ScrapWorkerSetFactoryTest.class,
         ThePirateBayScrapWorkerTest.class,
         MvcConfigTest.class,
-        SearchControllerTest.class
+        SearchControllerTest.class,
+        FileSizeConverterTest.class
 })
 public class AllTestsSuite {
 }
