@@ -14,6 +14,7 @@ on multiple search engines and returns combined results. Torrentr currently supp
 - Thymeleaf
 - HTML, CSS, JS, SASS
 - Spring Livereload, libsass-maven-plugin (great mvn goal for recompiling sass on every .scss modification)
+- docker-maven-plugin
 
 ## TODO:
 
